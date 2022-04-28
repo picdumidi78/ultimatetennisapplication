@@ -23,7 +23,7 @@
     "entitySuffix": "",
     "gitCompany": "",
     "herokuAppName": "ultimate-tennis-application",
-    "herokuDeployType": "git",
+    "herokuDeployType": "jar",
     "herokuJavaVersion": "11",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.8.1",
