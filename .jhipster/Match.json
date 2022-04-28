@@ -1,0 +1,62 @@
+{
+  "applications": "*",
+  "changelogDate": "20220428181838",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "match",
+  "fields": [
+    {
+      "fieldName": "playerOneName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "playerOneScore",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "playerOneOdd",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "playerTwoName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "playerTwoScore",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "playerTwoOdd",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "prediction",
+      "fieldType": "Resultat",
+      "fieldValues": "PLAYERONE (Tennis player 1 wins),PLAYERTWO (Tennis player 2 wins),ONESETONE (1 set at least for player 1),ONESETWO (1 set at least for player 2),GAMELOWONE (At least 17.5 games),GAMELOWTWO (At least 18.5 games),GAMEHIGHONE (Less than 17.5 games),GAMEHIGHTWO (Less than 18.5 games)"
+    },
+    {
+      "fieldName": "actualResult",
+      "fieldType": "Resultat",
+      "fieldValues": "PLAYERONE (Tennis player 1 wins),PLAYERTWO (Tennis player 2 wins),ONESETONE (1 set at least for player 1),ONESETWO (1 set at least for player 2),GAMELOWONE (At least 17.5 games),GAMELOWTWO (At least 18.5 games),GAMEHIGHONE (Less than 17.5 games),GAMEHIGHTWO (Less than 18.5 games)"
+    },
+    {
+      "fieldName": "betAmount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "potentialGain",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gain",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Match",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

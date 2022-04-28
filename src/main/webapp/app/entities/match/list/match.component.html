@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="MatchHeading">
+    <span jhiTranslate="ultimateTennisApplicationApp.match.home.title">Matches</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="ultimateTennisApplicationApp.match.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-match"
+        [routerLink]="['/match/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="ultimateTennisApplicationApp.match.home.createLabel"> Create a new Match </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="matches?.length === 0">
+    <span jhiTranslate="ultimateTennisApplicationApp.match.home.notFound">No matches found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="matches && matches.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="playerOneName">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.playerOneName">Player One Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="playerOneScore">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.playerOneScore">Player One Score</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="playerOneOdd">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.playerOneOdd">Player One Odd</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="playerTwoName">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.playerTwoName">Player Two Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="playerTwoScore">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.playerTwoScore">Player Two Score</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="playerTwoOdd">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.playerTwoOdd">Player Two Odd</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="prediction">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.prediction">Prediction</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="actualResult">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.actualResult">Actual Result</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="betAmount">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.betAmount">Bet Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="potentialGain">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.potentialGain">Potential Gain</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gain">
+            <span jhiTranslate="ultimateTennisApplicationApp.match.gain">Gain</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let match of matches; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/match', match.id, 'view']">{{ match.id }}</a>
+          </td>
+          <td>{{ match.playerOneName }}</td>
+          <td>{{ match.playerOneScore }}</td>
+          <td>{{ match.playerOneOdd }}</td>
+          <td>{{ match.playerTwoName }}</td>
+          <td>{{ match.playerTwoScore }}</td>
+          <td>{{ match.playerTwoOdd }}</td>
+          <td jhiTranslate="{{ 'ultimateTennisApplicationApp.Resultat.' + match.prediction }}">{{ match.prediction }}</td>
+          <td jhiTranslate="{{ 'ultimateTennisApplicationApp.Resultat.' + match.actualResult }}">{{ match.actualResult }}</td>
+          <td>{{ match.betAmount }}</td>
+          <td>{{ match.potentialGain }}</td>
+          <td>{{ match.gain }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/match', match.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/match', match.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(match)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,168 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-match-heading"
+        data-cy="MatchCreateUpdateHeading"
+        jhiTranslate="ultimateTennisApplicationApp.match.home.createOrEditLabel"
+      >
+        Create or edit a Match
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.playerOneName" for="field_playerOneName"
+            >Player One Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="playerOneName"
+            id="field_playerOneName"
+            data-cy="playerOneName"
+            formControlName="playerOneName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.playerOneScore" for="field_playerOneScore"
+            >Player One Score</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="playerOneScore"
+            id="field_playerOneScore"
+            data-cy="playerOneScore"
+            formControlName="playerOneScore"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.playerOneOdd" for="field_playerOneOdd"
+            >Player One Odd</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="playerOneOdd"
+            id="field_playerOneOdd"
+            data-cy="playerOneOdd"
+            formControlName="playerOneOdd"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.playerTwoName" for="field_playerTwoName"
+            >Player Two Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="playerTwoName"
+            id="field_playerTwoName"
+            data-cy="playerTwoName"
+            formControlName="playerTwoName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.playerTwoScore" for="field_playerTwoScore"
+            >Player Two Score</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="playerTwoScore"
+            id="field_playerTwoScore"
+            data-cy="playerTwoScore"
+            formControlName="playerTwoScore"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.playerTwoOdd" for="field_playerTwoOdd"
+            >Player Two Odd</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="playerTwoOdd"
+            id="field_playerTwoOdd"
+            data-cy="playerTwoOdd"
+            formControlName="playerTwoOdd"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.prediction" for="field_prediction">Prediction</label>
+          <select class="form-control" name="prediction" formControlName="prediction" id="field_prediction" data-cy="prediction">
+            <option [ngValue]="null">{{ 'ultimateTennisApplicationApp.Resultat.null' | translate }}</option>
+            <option *ngFor="let resultat of resultatValues" [value]="resultat">
+              {{ 'ultimateTennisApplicationApp.Resultat.' + resultat | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.actualResult" for="field_actualResult"
+            >Actual Result</label
+          >
+          <select class="form-control" name="actualResult" formControlName="actualResult" id="field_actualResult" data-cy="actualResult">
+            <option [ngValue]="null">{{ 'ultimateTennisApplicationApp.Resultat.null' | translate }}</option>
+            <option *ngFor="let resultat of resultatValues" [value]="resultat">
+              {{ 'ultimateTennisApplicationApp.Resultat.' + resultat | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.betAmount" for="field_betAmount">Bet Amount</label>
+          <input type="number" class="form-control" name="betAmount" id="field_betAmount" data-cy="betAmount" formControlName="betAmount" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.potentialGain" for="field_potentialGain"
+            >Potential Gain</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="potentialGain"
+            id="field_potentialGain"
+            data-cy="potentialGain"
+            formControlName="potentialGain"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ultimateTennisApplicationApp.match.gain" for="field_gain">Gain</label>
+          <input type="number" class="form-control" name="gain" id="field_gain" data-cy="gain" formControlName="gain" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

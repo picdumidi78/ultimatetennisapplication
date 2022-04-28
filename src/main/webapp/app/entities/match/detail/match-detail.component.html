@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="match">
+      <h2 data-cy="matchDetailsHeading"><span jhiTranslate="ultimateTennisApplicationApp.match.detail.title">Match</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ match.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.playerOneName">Player One Name</span></dt>
+        <dd>
+          <span>{{ match.playerOneName }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.playerOneScore">Player One Score</span></dt>
+        <dd>
+          <span>{{ match.playerOneScore }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.playerOneOdd">Player One Odd</span></dt>
+        <dd>
+          <span>{{ match.playerOneOdd }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.playerTwoName">Player Two Name</span></dt>
+        <dd>
+          <span>{{ match.playerTwoName }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.playerTwoScore">Player Two Score</span></dt>
+        <dd>
+          <span>{{ match.playerTwoScore }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.playerTwoOdd">Player Two Odd</span></dt>
+        <dd>
+          <span>{{ match.playerTwoOdd }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.prediction">Prediction</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'ultimateTennisApplicationApp.Resultat.' + match.prediction }}">{{ match.prediction }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.actualResult">Actual Result</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'ultimateTennisApplicationApp.Resultat.' + match.actualResult }}">{{ match.actualResult }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.betAmount">Bet Amount</span></dt>
+        <dd>
+          <span>{{ match.betAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.potentialGain">Potential Gain</span></dt>
+        <dd>
+          <span>{{ match.potentialGain }}</span>
+        </dd>
+        <dt><span jhiTranslate="ultimateTennisApplicationApp.match.gain">Gain</span></dt>
+        <dd>
+          <span>{{ match.gain }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/match', match.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
