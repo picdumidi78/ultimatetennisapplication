@@ -11,6 +11,9 @@ const matchRoute: Routes = [
   {
     path: '',
     component: MatchComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
     canActivate: [UserRouteAccessService],
   },
   {

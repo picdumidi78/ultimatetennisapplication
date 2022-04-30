@@ -55,7 +55,7 @@
   "fluentMethods": true,
   "jpaMetamodelFiltering": false,
   "name": "Match",
-  "pagination": "infinite-scroll",
+  "pagination": "pagination",
   "readOnly": false,
   "relationships": [],
   "service": "serviceImpl"

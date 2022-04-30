@@ -49,7 +49,7 @@
   "fluentMethods": true,
   "jpaMetamodelFiltering": false,
   "name": "Player",
-  "pagination": "infinite-scroll",
+  "pagination": "pagination",
   "readOnly": false,
   "relationships": [],
   "service": "serviceImpl"
